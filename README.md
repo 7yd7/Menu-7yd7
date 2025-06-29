@@ -8,7 +8,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/h
 
 ## Creating UI Interface button
 ```
-createIconButton({
+getgenv().createButton({
 	image = "rbxassetid://1",
 	name = "Test", 
 	enabled = true,
@@ -21,7 +21,7 @@ createIconButton({
 
 ## Stop or save buttons to stop later
 ```
-updateAllowedButtonData({
+getgenv().updateAllowedButtonData({
 	["Home"] = false,
 })
 ```
@@ -29,7 +29,7 @@ updateAllowedButtonData({
 
 ## Creating UI Universal Scripts button
 ```
-createScriptButton({
+getgenv().createScriptButton({
 	name = "Test Print ( TEST RUN !!)",
 	author = "Test author",
 	color = Color3.fromRGB(35, 35, 35),
@@ -38,3 +38,12 @@ createScriptButton({
 	end
 })
 ```
+
+## Update the existing CONFIG
+```
+getgenv().updateConfig({
+	OPEN_KEY = Enum.KeyCode.F8,
+        ButtonHeight = 40,
+        Height = 60,
+})
+<small>More [here](https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/List.lua) Line 40</small>
