@@ -1,13 +1,14 @@
 # UI Menu-7yd7
-Documentation
+
+Simple and customizable UI menu system for Roblox scripts
 
 ## Getting Loadstring
-```
+```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/basis.lua"))()
 ```
 
 ## Creating UI Interface button
-```
+```lua
 getgenv().createButton({
 	image = "rbxassetid://1",
 	name = "Test", 
@@ -19,16 +20,23 @@ getgenv().createButton({
 })
 ```
 
-## Stop or save buttons to stop later
-```
+**Parameters:**
+- `image` - Button icon (Roblox asset ID)
+- `name` - Button display name
+- `enabled` - Button state (true/false)
+- `closeOnClick` - Close menu when clicked
+- `action` - Function to run when clicked
+
+## Managing Button States
+```lua
 getgenv().updateAllowedButtonData({
 	["Home"] = false,
 })
 ```
-<small>Default buttons script go [here](https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/Create/buttons.lua) Type the name of the button that will be made invisible.</small>
+> **Note:** Default buttons list available [here](https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/Create/buttons.lua)
 
-## Creating UI Universal Scripts button
-```
+## Creating Universal Scripts button
+```lua
 getgenv().createScriptButton({
 	name = "Test Print ( TEST RUN !!)",
 	author = "Test author",
@@ -39,12 +47,18 @@ getgenv().createScriptButton({
 })
 ```
 
-## Update the existing CONFIG
-```
+**Parameters:**
+- `name` - Script name
+- `author` - Author name  
+- `color` - Button background color
+- `action` - Script code to execute
+
+## Update Configuration
+```lua
 getgenv().updateConfig({
 	OPEN_KEY = Enum.KeyCode.F8,
-        ButtonHeight = 40,
-        Height = 60,
+	ButtonHeight = 40,
+	Height = 60,
 })
 ```
-<small>More [here](https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/List.lua) Line 40</small>
+> **More options:** Full config list [here](https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/List.lua) (Line 40)
