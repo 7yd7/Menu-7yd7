@@ -515,7 +515,6 @@ KeyFrame.BorderSizePixel = 0
 KeyFrame.Position = UDim2.new(0, 15, 0, 60)
 KeyFrame.Size = UDim2.new(1, -200, 0, 25)
 
-local openKey = getgenv().MyScriptConfig.OPEN_KEY
 KeyLabel.Name = "KeyLabel"
 KeyLabel.Parent = KeyFrame
 KeyLabel.BackgroundColor3 = Color3.fromRGB(54, 54, 53)
@@ -524,7 +523,7 @@ KeyLabel.Position = UDim2.new(0, 150, 0, 0)
 KeyLabel.Size = UDim2.new(1, -200, 0, 25)
 KeyLabel.Font = Enum.Font.GothamBold
 task.delay(1, function()
-	KeyLabel.Text = openKey
+	KeyLabel.Text = getgenv().MyScriptConfig.OPEN_KEY
 end)
 KeyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyLabel.TextSize = 17.000
