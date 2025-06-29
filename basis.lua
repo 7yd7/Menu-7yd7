@@ -3,10 +3,10 @@ local baseUrl = "https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Scr
 local firstScript = "List.lua"
 
 local scripts = {
-    ["Universal-Scripts.lua"] = 0.1,
-    ["Home.lua"] = 0.5,
-    ["ChatLog.lua"] = 0.5,
-    ["Stat-Board.lua"] = 0.5
+    "Universal-Scripts.lua",
+    "Home.lua",
+    "ChatLog.lua",
+    "Stat-Board.lua"
 }
 
 local success, response = pcall(function()
@@ -14,18 +14,18 @@ local success, response = pcall(function()
 end)
 
 if success and response then
-    local ok = pcall(function()
+    local ok, err = pcall(function()
         loadstring(response)()
     end)
 
     if ok then
-        for scriptName, delay in pairs(scripts) do
+        for _, scriptName in ipairs(scripts) do
             spawn(function()
-                wait(delay)
                 local fullUrl = baseUrl .. scriptName
                 local s, res = pcall(function()
                     return game:HttpGet(fullUrl)
                 end)
+
                 if s and res then
                     pcall(function()
                         loadstring(res)()
@@ -41,4 +41,5 @@ if success and response then
         end)
     end
 end
-wait(0.3)
+
+wait(1)
