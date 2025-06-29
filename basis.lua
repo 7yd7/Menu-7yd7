@@ -3,8 +3,8 @@ local baseUrl = "https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Scr
 local firstScript = "List.lua"
 
 local scripts = {
-    "Home.lua",
     "Universal-Scripts.lua",
+    "Home.lua",
     "ChatLog.lua",
     "Stat-Board.lua"
 }
