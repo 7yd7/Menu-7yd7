@@ -10,6 +10,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterGui = game:GetService("StarterGui")
 local TextService = game:GetService("TextService")
 
+local UserInputService = game:GetService("UserInputService")
+
 local gui = Instance.new("ScreenGui")
 gui.Name = "Menu-7yd7"
 gui.Parent = game.CoreGui
@@ -80,6 +82,8 @@ function updateConfig(newSettings)
 	end
 end
 
+getgenv().updateConfig = updateConfig
+
 local FOVController = {
 	DefaultFOV = Camera.FieldOfView,
 	CurrentFOV = Camera.FieldOfView,
@@ -113,6 +117,8 @@ end
 function FOVController:DecreaseFOV(amount, instant)
 	self:ChangeFOV(self.CurrentFOV - (amount or 10), instant)
 end
+
+
 
 -- Taskbar
 local function createTaskbar()
@@ -716,3 +722,143 @@ UIS.InputBegan:Connect(function(input, processed)
 		toggleTaskbar(taskbar, timeLabel, icons, isVisible)
 	end
 end)
+
+local ScreenGui = Instance.new("ScreenGui") 
+local Frame = Instance.new("Frame") 
+local UICorner = Instance.new("UICorner") 
+local Menu = Instance.new("ImageButton") 
+local Image = Instance.new("ImageLabel") 
+local GuiService = game:GetService("GuiService")
+
+if not UserInputService.TouchEnabled and UserInputService.KeyboardEnabled then
+	
+else
+Frame.Parent = gui
+Frame.Name = "OpenMenu"
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
+Frame.BackgroundTransparency = 0.3
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0) 
+Frame.BorderSizePixel = 0 
+Frame.Position = UDim2.new(0.830, 0, 0, 0) 
+Frame.Size = UDim2.new(0, 115, 0, 49) 
+
+
+UICorner.CornerRadius = UDim.new(1, 0) 
+UICorner.Parent = Frame 
+
+Menu.Name = "Menu" 
+Menu.Parent = Frame 
+Menu.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+Menu.BackgroundTransparency = 1.000 
+Menu.BorderColor3 = Color3.fromRGB(0, 0, 0) 
+Menu.BorderSizePixel = 0 
+Menu.Position = UDim2.new(0.558002651, 0, 0.162123859, 0) 
+Menu.Size = UDim2.new(0, 35, 0, 32) 
+Menu.Image = "rbxassetid://109900712138994" 
+
+Image.Name = "Image" 
+Image.Parent = Frame 
+Image.Active = false 
+Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+Image.BackgroundTransparency = 1.000 
+Image.BorderColor3 = Color3.fromRGB(0, 0, 0) 
+Image.BorderSizePixel = 0 
+Image.Position = UDim2.new(0.120369896, 0, 0.162123859, 0) 
+Image.Selectable = true 
+Image.Size = UDim2.new(0, 35, 0, 32) 
+Image.Image = "rbxassetid://130498767869873"
+
+
+Menu.MouseButton1Click:Connect(function()
+	isVisible = not isVisible
+	toggleTaskbar(taskbar, timeLabel, icons, isVisible)
+end)
+
+local UserInputService = game:GetService("UserInputService")
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+	local delta = input.Position - dragStart
+	Frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+Frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = Frame.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+Frame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		update(input)
+	end
+end)
+end
+
+local iconData = {}
+local allowedButtonData = {}
+
+
+for _, data in ipairs(iconData) do
+	local icon, buttonData = createButton(
+		iconContainer, 
+		data
+	)
+	table.insert(icons, icon)
+	table.insert(buttonDataList, buttonData)
+end
+
+function createIconButton(params)
+	if allowedButtonData ~= nil then
+		if allowedButtonData[params.name] == false then
+			return nil, nil 
+		end
+	end
+
+    for i = 1,2 do
+    getgenv().createButton = createIconButton
+end
+
+
+	local newIcon = {
+		image = params.image or "rbxassetid://81076981372140",
+		name = params.name or "New Button",
+		enabled = params.enabled ~= nil and params.enabled or true,
+		closeOnClick = params.closeOnClick ~= nil and params.closeOnClick or false,
+		action = params.action or function() end
+	}
+
+	local icon, buttonData = createButton(iconContainer, newIcon)
+	table.insert(icons, icon)
+	table.insert(buttonDataList, buttonData)
+	table.insert(iconData, newIcon)
+
+	return icon, buttonData
+end
+
+local function updateAllowedButtonData(newData)
+	for name, value in pairs(newData) do
+		allowedButtonData[name] = value
+	end
+end
+
+for i = 1,2 do
+    getgenv().updateAllowedButtonData = updateAllowedButtonData
+end
