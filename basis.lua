@@ -1,7 +1,5 @@
 local baseUrl = "https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/"
-
 local firstScript = "List.lua"
-
 local scripts = {
     "Universal-Scripts.lua",
     "Home.lua",
@@ -9,35 +7,25 @@ local scripts = {
     "Stat-Board.lua"
 }
 
-local success, response = pcall(function()
-    return game:HttpGet(baseUrl .. firstScript)
-end)
-
-if success and response then
-    local ok, err = pcall(function()
-        loadstring(response)()
+local function loadAndExecuteScript(url)
+    local success, response = pcall(function()
+        return game:HttpGet(url)
     end)
-
-    if ok then
-        for _, scriptName in ipairs(scripts) do
-            spawn(function()
-                local fullUrl = baseUrl .. scriptName
-                local s, res = pcall(function()
-                    return game:HttpGet(fullUrl)
-                end)
-
-                if s and res then
-                    pcall(function()
-                        loadstring(res)()
-                    end)
-                end
-            end)
-        end
-
-        spawn(function()
-            pcall(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/Create/buttons.lua"))()
-            end)
+    
+    if success and response and response ~= "" then
+        pcall(function()
+            loadstring(response)()
         end)
     end
+end
+
+local firstScriptSuccess = loadAndExecuteScript(baseUrl .. firstScript)
+
+if firstScriptSuccess then
+    for i, scriptName in ipairs(scripts) do
+        local fullUrl = baseUrl .. scriptName
+        loadAndExecuteScript(fullUrl)
+    end
+    
+    loadAndExecuteScript("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/Create/buttons.lua")
 end
