@@ -4,9 +4,9 @@ local firstScript = "List.lua"
 
 local scripts = {
     ["Universal-Scripts.lua"] = 0.1,
-    ["Home.lua"] = 0.2,
-    ["ChatLog.lua"] = 0.2,
-    ["Stat-Board.lua"] = 0.2
+    ["Home.lua"] = 0.5,
+    ["ChatLog.lua"] = 0.5,
+    ["Stat-Board.lua"] = 0.5
 }
 
 local success, response = pcall(function()
@@ -41,3 +41,4 @@ if success and response then
         end)
     end
 end
+wait(0.3)
