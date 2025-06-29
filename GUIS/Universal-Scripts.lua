@@ -333,3 +333,23 @@ makeDraggable(taskbar)
 for i = 1,2 do
     getgenv().UniversalScripts = toggleGUI
 end
+
+function createScriptButton(data)
+	if type(data) ~= "table" then
+		warn("Invalid data passed to createScriptButton")
+		return nil
+	end
+
+	local button, name, author = addButton(data)
+	if button then
+		table.insert(buttons, {button, name, author})
+		return button, name, author
+	else
+		warn("Failed to create button for script")
+		return nil
+	end
+end
+
+for i = 1,2 do
+    getgenv().createScriptButton = createScriptButton
+end
