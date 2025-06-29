@@ -523,7 +523,7 @@ KeyLabel.Position = UDim2.new(0, 150, 0, 0)
 KeyLabel.Size = UDim2.new(1, -200, 0, 25)
 KeyLabel.Font = Enum.Font.GothamBold
 task.delay(1, function()
-	KeyLabel.Text = getgenv().MyScriptConfig.OPEN_KEY
+	KeyLabel.Text = getgenv().MyScriptConfig.OPEN_KEY.name
 end)
 KeyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 KeyLabel.TextSize = 17.000
