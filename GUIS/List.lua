@@ -832,9 +832,6 @@ function createIconButton(params)
 		end
 	end
 
-    for i = 1,2 do
-    getgenv().createButton = createIconButton
-end
 
 
 	local newIcon = {
@@ -858,6 +855,8 @@ local function updateAllowedButtonData(newData)
 		allowedButtonData[name] = value
 	end
 end
+
+getgenv().createButton = createIconButton
 
 for i = 1,2 do
     getgenv().updateAllowedButtonData = updateAllowedButtonData
