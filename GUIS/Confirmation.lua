@@ -7,7 +7,7 @@ local playerGui = player:WaitForChild("PlayerGui")
 
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "CustomConfirmationGUI"
-screenGui.Parent = playerGui
+screenGui.Parent = game.CoreGui
 screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 screenGui.ResetOnSpawn = false
 
@@ -213,7 +213,7 @@ end
             
             fadeTween:Play()
             fadeTween.Completed:Connect(function()
-                screenGui:Destroy()
+                mainFrame:Destroy()
             end)
         end)
     end
