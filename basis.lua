@@ -4,6 +4,7 @@ local firstScript = "List.lua"
 
 local scripts = {
     "Universal-Scripts.lua",
+    "Confirmation.lua",
     "Home.lua",
     "ChatLog.lua",
     "Stat-Board.lua"
