@@ -1,3 +1,4 @@
+getgenv().ScriptLoaders = function()
 -- Services
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
@@ -335,6 +336,7 @@ for i = 1,2 do
     getgenv().UniversalScripts = toggleGUI
 end
 
+
 function createScriptButton(data)
 	if type(data) ~= "table" then
 		warn("Invalid data passed to createScriptButton")
@@ -353,4 +355,6 @@ end
 
 for i = 1,2 do
     getgenv().createScriptButton = createScriptButton
+end
+
 end
