@@ -70,6 +70,20 @@ getgenv().createConfirmation({
 - `description` - description name  
 - `action` - Script code to execute
 
+## Creating UI Notify
+```lua
+getgenv().Notify({
+  Title = 'Test',
+  Content = 'Hello World', 
+  Duration = 5
+})
+```
+
+**Parameters:**
+- `name` - Script name
+- `Content` - Content name  
+- `Duration` - disappearance time period
+
 ## Update Configuration
 ```lua
 getgenv().updateConfig({
