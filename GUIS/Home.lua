@@ -742,6 +742,8 @@ end)
 Players.PlayerAdded:Connect(updateInfo)
 Players.PlayerRemoving:Connect(updateInfo)
 
+Home.Visible = true
+
 updateInfo()
 
 for i = 1,2 do
