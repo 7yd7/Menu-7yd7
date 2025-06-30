@@ -19,6 +19,7 @@ end
 
 local taskbar = Instance.new("Frame")
 taskbar.Name = "Universal Scripts"
+taskbar.Visible = false
 taskbar.AnchorPoint = Vector2.new(0.5, 1)
 taskbar.Position = UDim2.new(0.5, 0, 1, -80)
 taskbar.Size = UDim2.new(0, 400, 0, 200)
