@@ -1,3 +1,5 @@
+getgenv().ScriptLoaders = function()
+
 -- Services
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
@@ -745,4 +747,6 @@ updateInfo()
 
 for i = 1,2 do
     getgenv().toggleGuiHome = toggleGuiHome
+end
+
 end
