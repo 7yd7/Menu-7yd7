@@ -121,7 +121,7 @@ CopyButton.Parent = DiscordFrame
 CopyButton.BackgroundColor3 = Color3.fromRGB(52, 54, 56)
 CopyButton.Position = UDim2.new(0, 20, 0, 107)
 CopyButton.Size = UDim2.new(0, 30, 0, 30)
-CopyButton.Image = "rbxassetid://123987560730541"
+CopyButton.Image = "rbxassetid://78907078763695"
 CopyButton.ImageRectOffset = Vector2.new(644, 204)
 CopyButton.ImageRectSize = Vector2.new(36, 36)
 
@@ -134,11 +134,7 @@ UIGradient.Color = ColorSequence.new{
 }
 UIGradient.Parent = DiscordFrame
 
-local function CopyDiscordLink()
-	local link = "YOUR_DISCORD_LINK"
-end
-
-CopyButton.MouseButton1Click:Connect(CopyDiscordLink)
+CopyButton.MouseButton1Click:Connect(setclipboard("https://github.com/7yd7/Menu-7yd7?tab=readme-ov-file"))
 
 
 local UICornerCopyButton = Instance.new("UICorner")
