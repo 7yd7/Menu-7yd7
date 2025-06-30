@@ -44,6 +44,7 @@ local JobIdLabel = Instance.new("TextLabel")
 local Home = Instance.new("Frame")
 
 Home.Parent = game.CoreGui["Menu-7yd7"]
+Home.Visible = false
 Home.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Home.BackgroundTransparency = 1.000
 Home.BorderColor3 = Color3.fromRGB(0, 0, 0)
