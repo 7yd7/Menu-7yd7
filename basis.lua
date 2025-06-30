@@ -24,7 +24,7 @@ local function loadScriptWithTimeout(scriptName, index, timeout)
     local flagName = "Script_" .. index
     local startTime = tick()
 
-    spawn(function()
+    task.spawn(function()
         local success, response = pcall(function()
             return game:HttpGet(fullUrl)
         end)
@@ -66,7 +66,7 @@ local function loadScriptWithTimeout(scriptName, index, timeout)
     return getgenv().ScriptFlags[flagName]
 end
 
-spawn(function()
+task.spawn(function()
     local successful = 0
     local total = #scripts
     local criticalFailed = false
