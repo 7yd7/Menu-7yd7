@@ -1,3 +1,5 @@
+getgenv().ScriptLoaders = function()
+
 -- Services
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
@@ -860,4 +862,6 @@ getgenv().createButton = createIconButton
 
 for i = 1,2 do
     getgenv().updateAllowedButtonData = updateAllowedButtonData
+end
+
 end
