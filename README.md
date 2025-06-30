@@ -53,6 +53,23 @@ getgenv().createScriptButton({
 - `color` - Button background color
 - `action` - Script code to execute
 
+## Creating UI Confirmation or Cancel
+
+```
+getgenv().createConfirmation({
+    name = "Test Name",
+    description = "Test description",
+    action = function()
+       print("Test Run")
+    end
+})
+```
+
+**Parameters:**
+- `name` - Script name
+- `description` - description name  
+- `action` - Script code to execute
+
 ## Update Configuration
 ```lua
 getgenv().updateConfig({
