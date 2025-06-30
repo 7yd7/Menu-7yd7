@@ -1,4 +1,3 @@
-getgenv().ScriptLoaders.Confirmation = function()
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local UIS = game:GetService("UserInputService")
@@ -321,7 +320,4 @@ getgenv().createConfirmation = function(options)
         description = "Execute " .. (options.name or "this script") .. "?",
         action = options.action or function() end
     })
-end
-
-   return true
 end
