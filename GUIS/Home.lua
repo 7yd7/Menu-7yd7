@@ -122,8 +122,7 @@ CopyButton.BackgroundColor3 = Color3.fromRGB(52, 54, 56)
 CopyButton.Position = UDim2.new(0, 20, 0, 107)
 CopyButton.Size = UDim2.new(0, 30, 0, 30)
 CopyButton.Image = "rbxassetid://78907078763695"
-CopyButton.ImageRectOffset = Vector2.new(644, 204)
-CopyButton.ImageRectSize = Vector2.new(36, 36)
+CopyButton.AutoButtonColor = false
 
 UICorner_2.Parent = CopyButton
 
