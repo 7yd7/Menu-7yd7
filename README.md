@@ -1,3 +1,5 @@
+![design](design.png)
+
 # UI Menu-7yd7
 
 Simple and customizable UI menu system for Roblox scripts
