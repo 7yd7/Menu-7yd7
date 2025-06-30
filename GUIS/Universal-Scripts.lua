@@ -1,4 +1,4 @@
-getgenv().ScriptLoaders = function()
+getgenv().ScriptLoaders["Universal-Scripts"] = function()
 -- Services
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
@@ -357,4 +357,5 @@ for i = 1,2 do
     getgenv().createScriptButton = createScriptButton
 end
 
+   return true
 end
