@@ -724,8 +724,8 @@ local function updateInfo()
 	local playerCount = getPlayerCount()
 	
 
-	
-	UpdateInfo(identifyexecutor, "v1.2", timeSinceBoot, playerCount, deviceType, game.Name, game.JobId)
+	local GamePlaceId = game.PlaceId
+	UpdateInfo(identifyexecutor, "v1.2", timeSinceBoot, playerCount, deviceType, game:GetService("MarketplaceService"):GetProductInfo(GamePlaceId).Name, game.JobId)
 end
 
 spawn(function()
