@@ -18,6 +18,7 @@ taskbar.Position = UDim2.new(0.5, 0, 1, -80)
 taskbar.Size = UDim2.new(0, 400, 0, 200)
 taskbar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 taskbar.BorderSizePixel = 0
+taskbar.Visible = false
 taskbar.Parent = game.CoreGui["Menu-7yd7"]
 
 local function makeUICorners(parent, radius)
