@@ -1,4 +1,4 @@
-getgenv().ScriptLoaders = function()
+getgenv().ScriptLoaders.Home = function()
 
 -- Services
 local UIS = game:GetService("UserInputService")
@@ -749,4 +749,5 @@ for i = 1,2 do
     getgenv().toggleGuiHome = toggleGuiHome
 end
 
+   return true
 end
