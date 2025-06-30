@@ -55,7 +55,7 @@ getgenv().createScriptButton({
 
 ## Creating UI Confirmation or Cancel
 
-```
+```lua
 getgenv().createConfirmation({
     name = "Test Name",
     description = "Test description",
