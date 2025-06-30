@@ -1,5 +1,3 @@
-getgenv().ScriptLoaders["Stat-Board"] = function()
-
 -- Services
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
@@ -154,7 +152,4 @@ end)
 
 for i = 1,2 do
     getgenv().StatBoard = toggleGuiStatBoard
-end
-
-   return true
 end
