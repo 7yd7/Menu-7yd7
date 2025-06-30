@@ -1,3 +1,4 @@
+getgenv().ScriptLoaders = function()
 -- Services
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
@@ -412,4 +413,5 @@ local toggleFrame = setupToggleAnimation(taskbar)
 
 for i = 1,2 do
     getgenv().ChatLogs = toggleFrame
+end
 end
