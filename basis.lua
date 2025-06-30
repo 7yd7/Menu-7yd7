@@ -106,3 +106,27 @@ task.spawn(function()
         end
     end
 end)
+
+local requiredFunctions = {
+    "createButton",
+    "createScriptButton",
+    "updateAllowedButtonData",
+    "updateConfig",
+    "createConfirmation",
+    "Notify"
+}
+
+local timeout = 10
+local startTime = tick()
+local function allFunctionsReady()
+    for _, funcName in ipairs(requiredFunctions) do
+        if getgenv()[funcName] == nil then
+            return false
+        end
+    end
+    return true
+end
+
+repeat
+    wait(0.1)
+until allFunctionsReady() or (tick() - startTime > timeout)
