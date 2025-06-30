@@ -1,61 +1,108 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/Off-site/Notify.lua"))()
 local baseUrl = "https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/GUIS/"
-local firstScript = "List.lua"
+
 local scripts = {
-    "Universal-Scripts.lua",
-    "Confirmation.lua",
-    "Home.lua",
-    "ChatLog.lua",
-    "Stat-Board.lua"
+    {name = "List.lua", critical = true},
+    {name = "Universal-Scripts.lua", critical = false},
+    {name = "Off-site/Confirmation.lua", critical = false},
+    {name = "Home.lua", critical = false}, 
+    {name = "ChatLog.lua", critical = false},
+    {name = "Stat-Board.lua", critical = false}
 }
 
-local scriptsLoaded = 0
-local totalScripts = #scripts
-local allScriptsReady = false
+getgenv().ScriptFlags = getgenv().ScriptFlags or {}
 
-local function checkAllLoaded()
-    if scriptsLoaded >= totalScripts and not allScriptsReady then
-        allScriptsReady = true
-        spawn(function()
-            pcall(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/Create/buttons.lua"))()
-            end)
+
+getgenv().Notify({
+  Title = 'Menu | 7yd7',
+  Content = '🚀 Start loading scripts in order', 
+  Duration = 5
+})
+
+local function loadScriptWithTimeout(scriptName, index, timeout)
+    local fullUrl = baseUrl .. scriptName
+    local flagName = "Script_" .. index
+    local startTime = tick()
+
+    spawn(function()
+        local success, response = pcall(function()
+            return game:HttpGet(fullUrl)
         end)
+
+        if success and response then
+            local loadSuccess = pcall(function()
+                loadstring(response)()
+            end)
+            getgenv().ScriptFlags[flagName] = loadSuccess
+            if not loadSuccess then
+            
+                getgenv().Notify({
+                  Title = 'Menu | 7yd7',
+                  Content = "Download failed: " .. scriptName, 
+                  Duration = 5
+                })
+
+            end
+        else
+            getgenv().ScriptFlags[flagName] = false
+
+                getgenv().Notify({
+                  Title = 'Menu | 7yd7',
+                  Content = "Download failed: " .. scriptName, 
+                  Duration = 5
+                })
+
+        end
+    end)
+
+    while getgenv().ScriptFlags[flagName] == nil do
+        if tick() - startTime > timeout then
+            getgenv().ScriptFlags[flagName] = false
+            break
+        end
+        wait(0.05)
     end
+
+    return getgenv().ScriptFlags[flagName]
 end
 
-local success, response = pcall(function()
-    return game:HttpGet(baseUrl .. firstScript)
-end)
+spawn(function()
+    local successful = 0
+    local total = #scripts
+    local criticalFailed = false
 
-if success and response then
-    local ok, err = pcall(function()
-        loadstring(response)()
-    end)
-    
-    if ok then
-        for _, scriptName in ipairs(scripts) do
-            spawn(function()
-                local fullUrl = baseUrl .. scriptName
-                local s, res = pcall(function()
-                    return game:HttpGet(fullUrl)
-                end)
-                
-                if s and res then
-                    local loadSuccess = pcall(function()
-                        loadstring(res)()
-                    end)
-                    
-                    if loadSuccess then
-                        scriptsLoaded = scriptsLoaded + 1
-                        checkAllLoaded()
-                    else
+    for i, scriptInfo in ipairs(scripts) do
+        local scriptName = scriptInfo.name
+        local isCritical = scriptInfo.critical
+        local timeout = isCritical and 30 or 15
 
-                    end
-                else
-                    scriptsLoaded = scriptsLoaded + 1
-                    checkAllLoaded()
-                end
-            end)
+        local result = loadScriptWithTimeout(scriptName, i, timeout)
+
+        if result then
+            successful = successful + 1
+        elseif isCritical then
+            criticalFailed = true
+            break
+        end
+
+        wait(0.1)
+    end
+
+    if criticalFailed then
+        return
+    end
+
+    if getgenv().ScriptFlags["Script_1"] then
+        local externalSuccess = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Menu-7yd7/refs/heads/Script/Create/buttons.lua"))()
+        end)
+
+        if externalSuccess then
+               getgenv().Notify({
+                  Title = 'Menu | 7yd7',
+                  Content = '🎉 Everything worked!', 
+                  Duration = 5
+                })
         end
     end
-end
+end)
