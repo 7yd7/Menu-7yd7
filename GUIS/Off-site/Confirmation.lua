@@ -150,8 +150,9 @@ end
     cancelCorner.Parent = cancelButton
     
     local showTweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0)
-    local hideTweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In, 0, false, 0)
+    local hideTweenInfo = TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.In, 0, false, 0)
     local fadeInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.Out, 0, false, 0)
+    local hideFadeInfo = TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.In, 0, false, 0)
     
     local function playAndWait(tween)
         tween:Play()
@@ -200,20 +201,20 @@ end
     end
     
     local function hideContent()
-        local titleFade = TweenService:Create(titleLabel, fadeInfo, {
+        local titleFade = TweenService:Create(titleLabel, hideFadeInfo, {
             TextTransparency = 1
         })
         
-        local descFade = TweenService:Create(descriptionLabel, fadeInfo, {
+        local descFade = TweenService:Create(descriptionLabel, hideFadeInfo, {
             TextTransparency = 1
         })
         
-        local confirmFade = TweenService:Create(confirmButton, fadeInfo, {
+        local confirmFade = TweenService:Create(confirmButton, hideFadeInfo, {
             BackgroundTransparency = 1,
             TextTransparency = 1
         })
         
-        local cancelFade = TweenService:Create(cancelButton, fadeInfo, {
+        local cancelFade = TweenService:Create(cancelButton, hideFadeInfo, {
             BackgroundTransparency = 1,
             TextTransparency = 1
         })
@@ -231,14 +232,14 @@ end
             hideContent()
         end
         
-        local scaleTween = TweenService:Create(mainFrame, TweenInfo.new(0.2, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+        local scaleTween = TweenService:Create(mainFrame, TweenInfo.new(0.14, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
             Size = UDim2.new(0, 350, 0, 160),
             BackgroundTransparency = 0.3
         })
         
         playAndWait(scaleTween)
         
-        local fadeTween = TweenService:Create(mainFrame, TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
+        local fadeTween = TweenService:Create(mainFrame, TweenInfo.new(0.1, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
             BackgroundTransparency = 1,
             Size = UDim2.new(0, 10, 0, 5)
         })
@@ -250,21 +251,21 @@ end
     local function confirmHideGUI()
         hideContent()
 
-        local dropTween = TweenService:Create(mainFrame, TweenInfo.new(0.15, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+        local dropTween = TweenService:Create(mainFrame, TweenInfo.new(0.12, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
             Position = UDim2.new(0.5, 0, 0.5, 20)
         })
         
         dropTween:Play()
         
         dropTween.Completed:Connect(function()
-            local returnTween = TweenService:Create(mainFrame, TweenInfo.new(0.1, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+            local returnTween = TweenService:Create(mainFrame, TweenInfo.new(0.08, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
                 Position = UDim2.new(0.5, 0, 0.5, 0)
             })
             
             returnTween:Play()
             
             returnTween.Completed:Connect(function()
-                wait(0.05)
+                wait(0.03)
                 hideGUI(true)
             end)
         end)
