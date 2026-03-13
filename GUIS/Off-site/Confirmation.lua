@@ -301,7 +301,7 @@ end
     confirmButton.MouseButton1Click:Connect(function()
         animateButton(confirmButton, true)
         confirmAction()
-        confirmHideGUI()
+        hideGUI()
     end)
     
     cancelButton.MouseButton1Click:Connect(function()
